@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Web2 Studio — Modern Creative Platform</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="cursorGlow" class="cursor-glow"></div>
+    <header class="site-header">
+      <div class="container header-inner">
+        <h1 class="logo">Wave Studio</h1>
+        <nav class="nav">
+          <a href="#features">Features</a>
+          <a href="#portfolio">Work</a>
+          <a href="#tools">Tools</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <button class="theme-toggle" id="themeToggle">🌙</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <h2 class="hero-title">Digital design with a fresh teal glow</h2>
+          <p class="hero-subtitle">A stylish studio landing page built for creative teams and modern businesses.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#features">Explore Services</a>
+            <a class="btn btn-secondary" href="#portfolio">See Work</a>
+          </div>
+          <div class="hero-image"></div>
+        </div>
+      </section>
+
+      <section id="features" class="features">
+        <div class="container">
+          <h2>Why Choose Web2?</h2>
+          <div class="features-grid">
+            <article class="feature-card">
+              <div class="feature-icon">✨</div>
+              <h3>Modern Design</h3>
+              <p>Clean, contemporary aesthetics with attention to detail and user experience at every level.</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon">⚡</div>
+              <h3>High Performance</h3>
+              <p>Optimized for speed with minimal CSS and efficient JavaScript for instant interactions.</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon">📱</div>
+              <h3>Fully Responsive</h3>
+              <p>Perfect on all devices—desktop, tablet, and mobile with adaptive layouts.</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon">🎨</div>
+              <h3>Dark Mode Ready</h3>
+              <p>Toggle between light and dark themes with smooth animations and instant switching.</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon">🚀</div>
+              <h3>Interactive</h3>
+              <p>Engaging animations, hover effects, and smooth scrolling enhance user engagement.</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon">🔧</div>
+              <h3>Easy to Customize</h3>
+              <p>Simple HTML, CSS, and JavaScript structure for quick modifications and extensions.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="portfolio" class="portfolio">
+        <div class="container">
+          <h2>Our Portfolio</h2>
+          <div class="portfolio-grid">
+            <div class="portfolio-item">
+              <div class="portfolio-image" style="background:linear-gradient(135deg,#667eea,#764ba2)"></div>
+              <h4>Project One</h4>
+              <p>Interactive dashboard design</p>
+            </div>
+            <div class="portfolio-item">
+              <div class="portfolio-image" style="background:linear-gradient(135deg,#06b6d4,#22c55e)"></div>
+              <h4>Project Two</h4>
+              <p>E-commerce platform</p>
+            </div>
+            <div class="portfolio-item">
+              <div class="portfolio-image" style="background:linear-gradient(135deg,#0ea5e9,#22c55e)"></div>
+              <h4>Project Three</h4>
+              <p>Mobile-first SaaS app</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tools" class="tools">
+        <div class="container">
+          <div class="tools-header">
+            <h2>Interactive Tools</h2>
+            <p>Use the calculator, test your typing speed, or enjoy a quick click game directly on this page.</p>
+          </div>
+
+          <div class="tools-grid">
+            <article class="tool-card calculator-card">
+              <h3>Calculator</h3>
+              <div class="calculator">
+                <input type="text" id="calcDisplay" class="calculator-display" value="0" readonly />
+                <div class="calc-buttons">
+                  <button data-value="7">7</button>
+                  <button data-value="8">8</button>
+                  <button data-value="9">9</button>
+                  <button data-value="/">÷</button>
+                  <button data-value="4">4</button>
+                  <button data-value="5">5</button>
+                  <button data-value="6">6</button>
+                  <button data-value="*">×</button>
+                  <button data-value="1">1</button>
+                  <button data-value="2">2</button>
+                  <button data-value="3">3</button>
+                  <button data-value="-">−</button>
+                  <button data-value="0">0</button>
+                  <button data-value=".">.</button>
+                  <button data-action="clear">C</button>
+                  <button data-value="+">+</button>
+                  <button data-action="delete">DEL</button>
+                  <button data-action="equals" class="equals">=</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="tool-card typing-card">
+              <h3>Typing Speed Test</h3>
+              <p id="typingPrompt" class="typing-prompt">Type this phrase as quickly and accurately as you can: The quick brown fox jumps over the lazy dog.</p>
+              <textarea id="typingInput" class="typing-input" placeholder="Start typing here..."></textarea>
+              <div class="typing-results">
+                <span id="typingWpm">0 WPM</span>
+                <span id="typingAccuracy">100% accuracy</span>
+              </div>
+              <button class="btn btn-secondary" id="typingReset">Reset Test</button>
+            </article>
+
+            <article class="tool-card game-card">
+              <h3>Click Speed Game</h3>
+              <p>Click the green button as many times as you can in 10 seconds.</p>
+              <div class="game-status">
+                <span id="gameScore">0</span> clicks
+              </div>
+              <button class="btn btn-primary" id="gameButton" disabled>Click Me!</button>
+              <button class="btn btn-secondary" id="gameStart">Start Game</button>
+              <p class="game-timer" id="gameTimer">Time left: 10s</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact">
+        <div class="container">
+          <h2>Get In Touch</h2>
+          <p>Ready to build something amazing? Let's connect.</p>
+          <div class="contact-buttons">
+            <button class="btn btn-primary" id="emailBtn">✉️ Email Us</button>
+            <button class="btn btn-secondary" id="demoBtn">📅 Schedule Demo</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© 2026 Web2 Studio — Modern Web Design & Development</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
