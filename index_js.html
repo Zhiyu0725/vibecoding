@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Home</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, #ff4d6d 0%, #ff8a00 30%, #ffd166 60%, #06d6a0 100%);
+        color: #222;
+      }
+      .card {
+        background: linear-gradient(145deg, #ffffff 0%, #fff7ed 100%);
+        padding: 2.2rem 2.6rem;
+        border-radius: 20px;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+        text-align: center;
+        border: 3px solid #ffffff;
+      }
+      h1 {
+        color: #7c3aed;
+        margin-bottom: 0.6rem;
+        text-shadow: 1px 1px 0 #ffe4e6;
+      }
+      p {
+        color: #4b5563;
+        font-weight: 600;
+      }
+      a {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.9rem 1.4rem;
+        background: linear-gradient(90deg, #ec4899, #f59e0b, #10b981, #3b82f6);
+        color: white;
+        text-decoration: none;
+        border-radius: 999px;
+        font-weight: bold;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+      }
+      a:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 24px rgba(236, 72, 153, 0.35);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Welcome</h1>
+      <p>Open your subfolder here:</p>
+      <a href="web5/">Go to web5</a>
+    </div>
+    <script>
+      const title = document.querySelector('h1');
+      const message = document.querySelector('p');
+      const link = document.querySelector('a');
+
+      const greetings = ['Welcome', 'Hello there', 'Let\'s explore'];
+      const messages = [
+        'Open your subfolder here:',
+        'Your project space is ready:',
+        'Click below to continue:'
+      ];
+
+      let index = 0;
+
+      setInterval(() => {
+        index = (index + 1) % greetings.length;
+        title.textContent = greetings[index];
+        message.textContent = messages[index];
+        link.textContent = index === 0 ? 'Go to web5' : 'Open now';
+      }, 3000);
+    </script>
+  </body>
+</html>
