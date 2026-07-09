@@ -1,0 +1,85 @@
+:root {
+  color-scheme: dark;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #0f172a, #1d4ed8);
+  color: #f8fafc;
+}
+
+.game-shell {
+  width: min(92vw, 560px);
+  padding: 24px;
+  border-radius: 20px;
+  background: rgba(15, 23, 42, 0.9);
+  box-shadow: 0 20px 40px rgba(2, 8, 23, 0.35);
+  text-align: center;
+}
+
+h1 { margin: 0 0 8px; font-size: 2rem; }
+.intro { margin: 0 0 16px; color: #cbd5e1; }
+
+.hud {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.start-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: #38bdf8;
+  color: #082f49;
+}
+
+.start-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.board {
+  position: relative;
+  margin: 18px auto 12px;
+  width: 100%;
+  height: 300px;
+  border: 2px dashed #38bdf8;
+  border-radius: 16px;
+  overflow: hidden;
+  background: radial-gradient(circle at top, #0f766e, #0f172a 70%);
+}
+
+.target {
+  position: absolute;
+  border: none;
+  border-radius: 999px;
+  width: 72px;
+  height: 72px;
+  color: white;
+  font-weight: 700;
+  background: linear-gradient(135deg, #f59e0b, #ef4444);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.target:hover {
+  transform: scale(1.08);
+}
+
+.message {
+  min-height: 24px;
+  color: #f8fafc;
+  font-weight: 600;
+}

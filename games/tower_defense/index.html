@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Tower Defense</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="game-shell">
+      <header class="topbar">
+        <div>
+          <h1>3D Tower Defense</h1>
+          <p>Place towers in the 3D arena and defend the core from incoming enemies.</p>
+        </div>
+        <div class="top-actions">
+          <button id="startBtn" type="button">Start / Restart</button>
+          <button id="menuBtn" type="button">Menu</button>
+        </div>
+      </header>
+
+      <section class="stats">
+        <div>Gold: <span id="gold">180</span></div>
+        <div>Lives: <span id="lives">20</span></div>
+        <div>Wave: <span id="wave">0</span></div>
+        <div>Score: <span id="score">0</span></div>
+      </section>
+
+      <section id="towerPicker" class="tower-picker" aria-label="Tower selection"></section>
+
+      <div id="mainMenu" class="overlay">
+        <div class="panel">
+          <h2>Main Menu</h2>
+          <div>Menu Gold: <span id="menuGold">0</span></div>
+          <div class="menu-buttons">
+            <button id="equipBtn" type="button">Equip</button>
+            <button id="playMenuBtn" type="button">Play</button>
+            <button id="upgradeBtn" type="button">Upgrade</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="shopOverlay" class="overlay hidden">
+        <div class="panel">
+          <h3>Shop</h3>
+          <div id="shopList"></div>
+          <button id="closeShop">Close</button>
+        </div>
+      </div>
+
+      <div id="upgradeOverlay" class="overlay hidden">
+        <div class="panel">
+          <h3>Upgrades</h3>
+          <div id="upgradeList"></div>
+          <button id="closeUpgrade">Close</button>
+        </div>
+      </div>
+
+      <div id="gameContainer"></div>
+      <p id="message" class="message">Press Start to begin.</p>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Game</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="game-shell">
+      <h1>Simple Game</h1>
+      <p class="intro">Tap the target as many times as you can in 15 seconds.</p>
+
+      <div class="hud">
+        <div>Score: <span id="score">0</span></div>
+        <div>Time: <span id="time">15</span>s</div>
+      </div>
+
+      <button id="startBtn" class="start-btn" type="button">Start Game</button>
+
+      <div id="board" class="board" aria-label="Game board">
+        <button id="target" class="target" type="button">Tap!</button>
+      </div>
+
+      <p id="message" class="message">Press start to begin.</p>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

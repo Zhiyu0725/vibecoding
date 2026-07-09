@@ -1,0 +1,106 @@
+:root {
+  color-scheme: dark;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #07111f, #14532d);
+  color: #f8fafc;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.game-shell {
+  position: relative;
+  width: min(96vw, 1100px);
+  background: rgba(15, 23, 42, 0.95);
+  padding: 18px;
+  border-radius: 18px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.35);
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.topbar h1 { margin: 0 0 4px; }
+.topbar p { margin: 0; color: #cbd5e1; }
+
+button {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  background: #34d399;
+  color: #052e16;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.tower-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.tower-btn {
+  background: #1f2937;
+  color: #f8fafc;
+  border: 1px solid #475569;
+}
+
+.tower-btn.active {
+  background: #34d399;
+  color: #052e16;
+  border-color: #34d399;
+}
+
+#gameContainer {
+  width: 100%;
+  height: 620px;
+  border: 2px solid #34d399;
+  border-radius: 12px;
+  overflow: hidden;
+  background: radial-gradient(circle at top, #1f3d2f, #07111f 70%);
+}
+
+.message {
+  min-height: 24px;
+  margin: 10px 0 0;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 20;
+  pointer-events: auto;
+}
+.overlay .panel {
+  background: rgba(2,6,23,0.92);
+  padding: 18px;
+  border-radius: 12px;
+  width: min(92vw, 520px);
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+.overlay.hidden { display: none; }
+.menu-buttons { display:flex; gap:10px; justify-content:center; margin-top:10px; }
+.panel button { margin-top:12px; }
+.shop-item, .upgrade-item { display:flex; justify-content:space-between; align-items:center; padding:8px; border-bottom:1px solid rgba(255,255,255,0.04); }
