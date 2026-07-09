@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Calculator — minimal, fast, accessible calculator web UI with tools and services." />
+    <title>Calculator — Minimal, Modern Calculator</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#home">Calculator</a>
+        <nav class="nav" aria-label="Main navigation">
+          <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list">Menu</button>
+          <ul id="nav-list" class="nav-list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section id="home" class="hero">
+        <div class="container hero-inner">
+          <div class="hero-content">
+            <h1>Fast, minimal calculator for every task</h1>
+            <p class="lead">A clean, responsive calculator UI with tools, services and integrations — built for speed and accessibility.</p>
+            <div class="hero-actions">
+              <a class="btn primary" href="#calculator">Try Calculator</a>
+              <a class="btn ghost" href="#about">Learn more</a>
+            </div>
+          </div>
+          <aside id="calculator" class="card calculator" aria-label="Calculator">
+            <input class="calc-display" type="text" aria-label="Calculator display" readonly value="0" />
+            <div class="calc-grid" role="group" aria-label="Calculator keys">
+              <button data-action="clear">C</button>
+              <button data-action="back">←</button>
+              <button data-value="%">%</button>
+              <button data-value="/">÷</button>
+
+              <button data-value="7">7</button>
+              <button data-value="8">8</button>
+              <button data-value="9">9</button>
+              <button data-value="*">×</button>
+
+              <button data-value="4">4</button>
+              <button data-value="5">5</button>
+              <button data-value="6">6</button>
+              <button data-value="-">−</button>
+
+              <button data-value="1">1</button>
+              <button data-value="2">2</button>
+              <button data-value="3">3</button>
+              <button data-value="+">+</button>
+
+              <button data-value="0" class="span-2">0</button>
+              <button data-value=".">.</button>
+              <button data-action="equals" class="equals">=</button>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section id="about" class="section">
+        <div class="container">
+          <h2>About</h2>
+          <p>Calculator is a minimal, high-performance UI designed for quick calculations and embedding in other projects. It focuses on clarity, keyboard accessibility, and low resource use.</p>
+        </div>
+      </section>
+
+      <!-- Services -->
+      <section id="services" class="section">
+        <div class="container grid-3">
+          <div class="card">
+            <h3>Embedded Widget</h3>
+            <p>Lightweight widget you can drop into dashboards or docs.</p>
+          </div>
+          <div class="card">
+            <h3>API Integrations</h3>
+            <p>Connect results to spreadsheets, logging, or automation tools.</p>
+          </div>
+          <div class="card">
+            <h3>Custom Themes</h3>
+            <p>Easy to theme using CSS variables for brand alignment.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gallery -->
+      <section id="gallery" class="section">
+        <div class="container">
+          <h2>Gallery</h2>
+          <div class="gallery-grid">
+            <div class="thumb">Live preview</div>
+            <div class="thumb">Dark theme</div>
+            <div class="thumb">Mobile view</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="section">
+        <div class="container">
+          <h2>FAQ</h2>
+          <div class="faq">
+            <button class="faq-item">
+              <span>Is the calculator offline?</span>
+              <span class="chev">▸</span>
+            </button>
+            <div class="faq-panel">Yes — the UI runs fully in the browser, no backend required.</div>
+
+            <button class="faq-item">
+              <span>Can I theme it?</span>
+              <span class="chev">▸</span>
+            </button>
+            <div class="faq-panel">Yes — colors and spacing are controlled with CSS variables.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="section">
+        <div class="container grid-2">
+          <div>
+            <h2>Contact</h2>
+            <p>Reach out for custom integrations or enterprise licensing.</p>
+            <form id="contact-form" class="card form" novalidate>
+              <label>
+                <span class="label">Name</span>
+                <input type="text" name="name" required />
+              </label>
+              <label>
+                <span class="label">Email</span>
+                <input type="email" name="email" required />
+              </label>
+              <label>
+                <span class="label">Message</span>
+                <textarea name="message" rows="4" required></textarea>
+              </label>
+              <div class="form-actions">
+                <button type="submit" class="btn primary">Send Message</button>
+                <button type="reset" class="btn ghost">Reset</button>
+              </div>
+              <p id="contact-feedback" class="feedback" aria-live="polite"></p>
+            </form>
+          </div>
+
+          <aside class="card">
+            <h3>Newsletter</h3>
+            <p>Subscribe for small updates and tips.</p>
+            <form id="newsletter" class="newsletter">
+              <label class="sr-only">Email</label>
+              <input type="email" name="email" placeholder="you@example.com" required />
+              <div class="form-actions">
+                <button type="submit" class="btn primary">Subscribe</button>
+              </div>
+              <p id="news-feedback" class="feedback" aria-live="polite"></p>
+            </form>
+
+            <h4>Social</h4>
+            <div class="social">
+              <a href="#" aria-label="Twitter">Twitter</a>
+              <a href="#" aria-label="GitHub">GitHub</a>
+              <a href="#" aria-label="LinkedIn">LinkedIn</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© <span id="year"></span> Calculator — Built for clarity.</p>
+        <nav aria-label="Footer">
+          <a href="#privacy">Privacy</a>
+          <a href="#terms">Terms</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="js/script.js" defer></script>
+  </body>
+</html>
