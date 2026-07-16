@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Home - Blog{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Posts</h1>
+    {% if session.get('user_id') %}
+        <a href="{{ url_for('posts.create') }}" class="btn" style="width:auto;height:auto;padding:0.5rem 1rem;">+ New Post</a>
+    {% endif %}
+</div>
+
+{% if posts %}
+    {% for post in posts %}
+        <article class="post-card">
+            <h2><a href="{{ url_for('posts.view', post_id=post['id']) }}">{{ post['title'] }}</a></h2>
+            <div class="post-meta">
+                {{ post['username'] }} &middot; {{ post['created_at'] }}
+            </div>
+            <p class="post-preview">{{ post['body'][:200] }}{% if post['body']|length > 200 %}...{% endif %}</p>
+            <a href="{{ url_for('posts.view', post_id=post['id']) }}" class="read-more">Read more &rarr;</a>
+        </article>
+    {% endfor %}
+{% else %}
+    <div class="empty-state">
+        <p>No posts yet. Be the first to write something.</p>
+        {% if session.get('user_id') %}
+            <a href="{{ url_for('posts.create') }}" class="btn">Write a post</a>
+        {% else %}
+            <a href="{{ url_for('auth.register') }}" class="btn">Get started</a>
+        {% endif %}
+    </div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}{{ post['title'] }} - Blog{% endblock %}
+
+{% block content %}
+<article class="post-full">
+    <h1>{{ post['title'] }}</h1>
+    <div class="post-meta">
+        {{ post['username'] }} &middot; {{ post['created_at'] }}
+    </div>
+    <div class="post-body">{{ post['body'] }}</div>
+    <a href="{{ url_for('posts.index') }}" class="back-link">&larr; All posts</a>
+</article>
+{% endblock %}

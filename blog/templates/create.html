@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}New Post - Blog{% endblock %}
+
+{% block content %}
+<div class="form-container" style="max-width:560px">
+    <h1>New Post</h1>
+    <form method="POST">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" value="{{ title|default('') }}" required
+                   maxlength="200" placeholder="What's on your mind?">
+        </div>
+        <div class="form-group">
+            <label for="body">Body</label>
+            <textarea id="body" name="body" rows="14" required placeholder="Write your post...">{{ body|default('') }}</textarea>
+        </div>
+        <button type="submit" class="btn">Publish</button>
+    </form>
+</div>
+{% endblock %}
