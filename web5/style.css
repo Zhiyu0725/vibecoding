@@ -1,0 +1,81 @@
+:root{
+	--green-1: #0f9b0f;
+	--green-2: #34d399;
+	--green-3: #a7f3d0;
+}
+
+/* full-page animated green gradient */
+html,body{
+	height:100%;
+}
+
+body{
+	margin:0;
+	font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+	color: #04260f;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	min-height:100vh;
+	background: linear-gradient(135deg, var(--green-1), var(--green-2), var(--green-3));
+	background-size: 400% 400%;
+	animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift{
+	0% { background-position: 0% 50%; }
+	50% { background-position: 100% 50%; }
+	100% { background-position: 0% 50%; }
+}
+
+/* subtle float animation for the heading */
+h1{
+	background: rgba(255,255,255,0.7);
+	padding: 0.6rem 1rem;
+	border-radius: 10px;
+	box-shadow: 0 6px 18px rgba(2,6,2,0.15);
+	animation: float 3s ease-in-out infinite alternate;
+}
+
+@keyframes float{
+	from { transform: translateY(0); }
+	to   { transform: translateY(-8px); }
+}
+
+/* make the list readable on the gradient */
+ul{
+	background: rgba(255,255,255,0.6);
+	padding: 0.6rem 1rem;
+	border-radius: 8px;
+	box-shadow: 0 4px 12px rgba(2,6,2,0.12);
+}
+
+a{ color: #054f2a; text-decoration: none; }
+a:hover{ text-decoration: underline; }
+
+/* pulse box used on index_css.html */
+.pulse-box{
+	width:72px;
+	height:72px;
+	border-radius:16px;
+	background: rgba(255,255,255,0.85);
+	box-shadow: 0 8px 20px rgba(2,6,2,0.12);
+	margin: 16px auto;
+	animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse{
+	0%{ transform: scale(1); opacity:1; }
+	50%{ transform: scale(1.12); opacity:0.9; }
+	100%{ transform: scale(1); opacity:1; }
+}
+
+/* js-box basic style (JS will animate translateY) */
+#js-box{
+	width:64px;
+	height:64px;
+	border-radius:50%;
+	background: white;
+	box-shadow: 0 8px 20px rgba(2,6,2,0.12);
+	margin: 16px auto;
+}

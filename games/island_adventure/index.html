@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Island Adventure</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { overflow: hidden; background: #111; font-family: 'Segoe UI', monospace; }
+    canvas { display: block; }
+
+    #blocker {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; cursor: pointer; z-index: 20;
+    }
+    #blocker h1 { color: #4fc; font-size: 2.4rem; letter-spacing: 0.12em; text-shadow: 0 0 30px rgba(68,255,200,0.3); }
+    #blocker p { color: #889; font-size: 1rem; margin-top: 0.6rem; }
+    #blocker .controls { color: #557; font-size: 0.8rem; margin-top: 1.4rem; line-height: 2; }
+    #blocker .controls span { color: #4fc; background: rgba(255,255,255,0.06); padding: 2px 10px; border-radius: 3px; }
+
+    #hud {
+      position: fixed; inset: 0; pointer-events: none; z-index: 10;
+    }
+    #health-bar {
+      position: absolute; bottom: 30px; left: 30px; width: 200px; height: 14px;
+      background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 7px; overflow: hidden;
+    }
+    #health-fill {
+      width: 100%; height: 100%; background: linear-gradient(90deg, #f44, #f84);
+      transition: width 0.2s; border-radius: 7px;
+    }
+    #health-label { position: absolute; bottom: 48px; left: 30px; color: #889; font-size: 0.7rem; letter-spacing: 0.1em; }
+
+    #score-display {
+      position: absolute; top: 20px; right: 24px; color: #4fc; font-size: 1.3rem;
+      text-shadow: 0 0 12px rgba(68,255,200,0.3); letter-spacing: 0.08em;
+    }
+    #ammo-display {
+      position: absolute; bottom: 30px; right: 30px; color: #aac; font-size: 0.9rem;
+      letter-spacing: 0.05em;
+    }
+    #crosshair {
+      position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 24px; height: 24px; z-index: 5; pointer-events: none;
+    }
+    #crosshair::before, #crosshair::after {
+      content: ''; position: absolute; background: rgba(255,255,255,0.25);
+    }
+    #crosshair::before { width: 1px; height: 100%; left: 50%; }
+    #crosshair::after { width: 100%; height: 1px; top: 50%; }
+    #crosshair .dot { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.4); }
+    #message {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      color: #fff; font-size: 1.6rem; letter-spacing: 0.1em; opacity: 0;
+      transition: opacity 0.3s; pointer-events: none;
+    }
+    #message.show { opacity: 1; }
+
+    .stat-bar {
+      position: absolute; left: 30px; width: 160px; height: 10px;
+      background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.08); border-radius: 5px; overflow: hidden;
+    }
+    .stat-bar .fill { height: 100%; border-radius: 5px; transition: width 0.3s; }
+    .stat-label { position: absolute; left: 30px; color: #889; font-size: 0.6rem; letter-spacing: 0.08em; }
+
+    #hunger-bar { bottom: 52px; }
+    #hunger-fill { background: linear-gradient(90deg, #d4a017, #f0c040); }
+    #hunger-label { bottom: 64px; }
+
+    #thirst-bar { bottom: 74px; }
+    #thirst-fill { background: linear-gradient(90deg, #1e90ff, #4fc3f7); }
+    #thirst-label { bottom: 86px; }
+
+    #minimap {
+      position: absolute; top: 30px; left: 30px; width: 120px; height: 120px;
+      background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px;
+      overflow: hidden; pointer-events: none;
+    }
+    #minimap canvas { width: 100%; height: 100%; }
+
+    #action-hint {
+      position: absolute; bottom: 110px; left: 50%; transform: translateX(-50%);
+      color: #4fc; font-size: 0.85rem; letter-spacing: 0.05em; opacity: 0;
+      transition: opacity 0.3s; text-shadow: 0 0 10px rgba(68,255,200,0.3);
+    }
+    #action-hint.show { opacity: 1; }
+
+    #inventory {
+      position: absolute; bottom: 120px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 4px; opacity: 0; transition: opacity 0.3s; pointer-events: auto;
+    }
+    #inventory.show { opacity: 1; }
+    #inventory .slot {
+      position: relative; width: 48px; height: 48px; background: rgba(0,0,0,0.5);
+      border: 2px solid rgba(255,255,255,0.1); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; color: #aac; cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    #inventory .slot.selected { border-color: #4fc; background: rgba(68,255,200,0.12); }
+    #inventory .slot .key-hint {
+      position: absolute; top: -8px; left: 2px; font-size: 0.55rem; color: #667;
+    }
+    #inventory .slot .count {
+      position: absolute; bottom: 1px; right: 3px; font-size: 0.6rem; color: #889;
+      font-weight: 700;
+    }
+
+    #crafting-panel {
+      position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      background: rgba(10,10,20,0.92); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px; padding: 20px 28px; z-index: 15;
+      display: none; min-width: 280px; pointer-events: auto;
+    }
+    #crafting-panel.open { display: block; }
+    #crafting-panel h3 { color: #4fc; font-size: 1.1rem; letter-spacing: 0.08em; margin-bottom: 14px; text-align: center; }
+    #crafting-panel .recipe {
+      display: flex; align-items: center; gap: 12px; padding: 8px 12px;
+      margin-bottom: 6px; border-radius: 8px; cursor: pointer;
+      transition: background 0.15s; border: 1px solid rgba(255,255,255,0.06);
+    }
+    #crafting-panel .recipe:hover { background: rgba(255,255,255,0.06); }
+    #crafting-panel .recipe .r-icon { font-size: 1.3rem; width: 32px; text-align: center; }
+    #crafting-panel .recipe .r-name { color: #ccd; font-size: 0.85rem; flex: 1; }
+    #crafting-panel .recipe .r-cost { color: #667; font-size: 0.7rem; }
+    #crafting-panel .recipe.cant { opacity: 0.35; cursor: default; }
+    #crafting-panel .recipe.cant:hover { background: transparent; }
+    #crafting-panel .close-hint { color: #445; font-size: 0.65rem; text-align: center; margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <div id="blocker">
+    <h1>ISLAND ADVENTURE</h1>
+    <p>Click to explore</p>
+    <div class="controls">
+      <span>W A S D</span> move &nbsp;·&nbsp; <span>Mouse</span> look &nbsp;·&nbsp; <span>Space</span> jump &nbsp;·&nbsp; <span>C</span> craft &nbsp;·&nbsp; <span>E</span> interact/fish
+    </div>
+  </div>
+
+  <div id="hud">
+    <div id="health-label">HEALTH</div>
+    <div id="health-bar"><div id="health-fill"></div></div>
+    <div id="score-display">SCORE: <span id="score">0</span></div>
+    <div id="ammo-display">⚡ INF</div>
+    <div class="stat-label" id="hunger-label">HUNGER</div>
+    <div class="stat-bar" id="hunger-bar"><div class="fill" id="hunger-fill"></div></div>
+    <div class="stat-label" id="thirst-label">THIRST</div>
+    <div class="stat-bar" id="thirst-bar"><div class="fill" id="thirst-fill"></div></div>
+    <div id="action-hint"></div>
+    <div id="inventory"></div>
+    <div id="crafting-panel">
+      <h3>🔧 CRAFTING</h3>
+      <div id="recipes-list"></div>
+      <div class="close-hint">[C] Close</div>
+    </div>
+    <div id="crosshair"><div class="dot"></div></div>
+    <div id="message"></div>
+    <div id="minimap"><canvas id="minimap-canvas" width="120" height="120"></canvas></div>
+  </div>
+
+  <script type="importmap">
+    { "imports": { "three": "https://unpkg.com/three@0.170.0/build/three.module.js" } }
+  </script>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

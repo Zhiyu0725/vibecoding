@@ -529,4 +529,3 @@ requestAnimationFrame(animate);
 
 updateTowerButtons();
 updateHud();
-requestAnimationFrame(gameLoop);
